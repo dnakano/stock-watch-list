@@ -1,5 +1,5 @@
 # Stock Watch List application
-Stock Watch List application is written in [React](https://reactjs.org/) (for demonstration purpose only)
+Stock Watch List application is written in [React](https://reactjs.org/) using React Hooks (for demonstration purpose only)
 
 The application is located on [my portfolio site](https://daisukenakano.com/index.php#spa).
 
@@ -17,6 +17,6 @@ The source codes are located in the **src/** directory:
 
 ![Contact app](img/ContactListApp.PNG)
 
-Technologies used: **Babel, ESLint, JavaScript (ES6+), JSX, PostCSS, React, Redux, Sass, stylelint, webpack**
+Technologies used: **Babel, ESLint, JavaScript (ES6+), JSX, PostCSS, React, Sass, stylelint, webpack**
 
 If you have any questions or comments, please contact me. Thanks for looking!
