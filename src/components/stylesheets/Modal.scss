@@ -1,0 +1,125 @@
+// Stylesheet for Modal component
+@import "variables";
+
+// --- Modal mask ---
+.Modal-mask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $z-index-layer2;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color-grey, 0.8);
+}
+
+// --- Modal box ---
+.Modal-box {
+  position: relative;
+  color: $color-black;
+  text-align: center;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+
+// --- Modal box positions ---
+// Top
+.Modal-box-top {
+  justify-content: flex-start;
+}
+
+// Center
+.Modal-box-center {
+  justify-content: center;
+}
+
+// Bottom
+.Modal-box-bottom {
+  justify-content: flex-end;
+}
+
+// --- Modal box sizes ---
+.Modal-box-full {
+  width: 100%;
+}
+
+.Modal-box-compact {
+  width: 80%;
+}
+
+// --- Modal box title ---
+.Modal-box-title {
+  background-color: $color-white;
+  text-align: left;
+  width: 100%;
+  padding: 1em;
+  margin: 0;
+}
+
+// Modal box title round borders
+.Modal-box-title-round {
+  border-radius: 10px 10px 0 0;
+}
+
+// --- Modal box body ---
+.Modal-box-body {
+  background-color: $color-white;
+  width: 100%;
+  padding: 1em;
+  margin: 0;
+}
+
+// Modal box body round borders
+.Modal-box-body-round {
+  border-radius: 0 0 10px 10px;
+}
+
+// Modal box body only & round borders
+.Modal-box-body-only .Modal-box-body-round {
+  border-radius: 10px;
+}
+
+// --- Close button ---
+.Modal-btn-close {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  cursor: pointer;
+  color: $color-grey;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 8px;
+  margin: 0;
+  border: 0;
+
+  // Add 'X' icon
+  &::after {
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    content: "\f00d";
+    font-size: 16px;
+  }
+
+  &:hover {
+    color: $color-black;
+    background-color: transparent;
+  }
+
+  // Hide 'close' text
+  span {
+    position: absolute;
+    top: auto;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}

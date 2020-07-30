@@ -1,0 +1,46 @@
+// Stylesheet for ErrorBoundary component
+.ErrorBoundary {
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+
+  h4 {
+    color: #ff6347;
+    margin-bottom: 1em;
+
+    // Add warning icon
+    &::before {
+      font-family: "Font Awesome 5 Free";
+      display: inline-block;
+      font-weight: 900;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+
+      content: "\f071";
+      font-size: 20px;
+      margin-right: 0.2em;
+    }
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
+
+  details {
+    white-space: pre-wrap;
+    background-color: #f0f0f0;
+    padding: 0.8em;
+    border-radius: 4px;
+  }
+
+  summary {
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.ErrorBoundary-description {
+  color: #ff6347;
+}

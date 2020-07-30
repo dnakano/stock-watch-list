@@ -1,0 +1,91 @@
+// Stylesheet for Message component
+@import "variables";
+
+.Message {
+  // Default title section
+  .Modal-box-title {
+    color: $color-white;
+    background-color: $color-blue;
+  }
+
+  // Default close button
+  .Modal-btn-close {
+    color: $color-white;
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+}
+
+// Message content
+.Message-content {
+  text-align: left;
+  font-weight: bold;
+}
+
+// Buttons section
+.Message-buttons {
+  margin-top: 1em;
+}
+
+// Each button
+.Message-button {
+  color: $color-black;
+  background-color: $color-grey-light;
+  font-weight: bold;
+  padding: 0.6em 1.2em;
+  margin: 0;
+  border-radius: 10px;
+  border: 0;
+
+  &:hover {
+    background-color: darken($color-grey-light, 6%);
+  }
+}
+
+// Button(s) that is not the first one
+.Message-buttons button:not(:first-of-type) {
+  margin-left: 1em;
+}
+
+// Confirm ok message
+.Message-confirm-ok {
+
+  // Confirm ok button
+  .Message-button-confirm {
+    background-color: $color-blue-light;
+
+    &:hover {
+      background-color: darken($color-blue-light, 6%);
+    }
+  }
+
+}
+
+// Confirm warn message
+.Message-confirm-warn {
+
+  // Confirm warn title
+  .Modal-box-title {
+    background-color: $color-red;
+  }
+
+  // Confirm warn button
+  .Message-button-confirm {
+    background-color: $color-red-light;
+
+    &:hover {
+      background-color: darken($color-red-light, 6%);
+    }
+  }
+}
+
+// Error message
+.Message-error {
+
+  // Error message title
+  .Modal-box-title {
+    background-color: $color-red;
+  }
+}
