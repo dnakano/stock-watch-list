@@ -1,7 +1,7 @@
 # Stock Watch List application
 Stock Watch List application is written in [React](https://reactjs.org/) using React Hooks (for demonstration purpose only)
 
-The application is located on [my portfolio site](https://daisukenakano.com/index.php#spa).
+The application is located on [my portfolio site](https://daisukenakano.com/index.php#stock-watch-list).
 
 The source codes are located in the **src/** directory:
 * **src/StockWatchListApp/** - Contains source files used to create the contact list application
