@@ -8,6 +8,9 @@ const alphaVantage = new AlphaVantage();
 // Create a list item with stock data retrieved from Alpha Vantage
 const StockWatchListItem = ({ symbol, errorRef }) => {
 
+  // Create unique class name for each stock
+  const itemClass = `StockWatchListItem-${symbol}`;
+
   // Set Time Series interval and get Alpha Vantage quote url
   const tsInterval = 1;
   const url = alphaVantage.getTimeSeriesUrl(symbol, tsInterval);
@@ -36,6 +39,9 @@ const StockWatchListItem = ({ symbol, errorRef }) => {
 
     // Update data to display
     const updateData = () => {
+      // Get stock item element
+      const item = document.querySelector(`.${itemClass}`);
+
       const openPrice = Number.parseFloat(timeSeries[index][TIME_SERIES_INTRADAY.OPEN]);
 
       const closePrice = Number.parseFloat(timeSeries[index][TIME_SERIES_INTRADAY.CLOSE]);
@@ -44,6 +50,20 @@ const StockWatchListItem = ({ symbol, errorRef }) => {
 
       const changePercent = (changePrice / openPrice) * 100;
       const volume = Number.parseInt(timeSeries[index][TIME_SERIES_INTRADAY.VOLUME], 10);
+
+      if (changePrice > 0) {
+        // Price went up
+        item && item.classList.add('priceUp');
+        item && item.classList.remove('priceDown');
+      } else if (changePrice < 0) {
+        // Price went down
+        item && item.classList.remove('priceUp');
+        item && item.classList.add('priceDown');
+      } else {
+        // Price stayed the same
+        item && item.classList.remove('priceUp');
+        item && item.classList.remove('priceDown');
+      }
 
       // Update price
       setPrice(closePrice);
@@ -58,7 +78,7 @@ const StockWatchListItem = ({ symbol, errorRef }) => {
       setVolume((vol) => vol + volume);
     };
 
-    const delay = 60000;
+    const delay = 5000;
     let timeoutId = null;
 
     // Use setTimeout instead of setInterval to call function recursively
@@ -86,10 +106,10 @@ const StockWatchListItem = ({ symbol, errorRef }) => {
       index = 0;
       clearTimeout(timeoutId);
     });
-  }, [data]);
+  }, [data, itemClass]);
 
   // Convert string to float and format
-  const formatFloat = (value='0.00') => {
+  const formatFloat = (value = '0.00') => {
     const num = Number.isNaN(Number.parseFloat(value)) ? 0 : Number.parseFloat(value);
 
     return num.toFixed(2);
@@ -110,14 +130,14 @@ const StockWatchListItem = ({ symbol, errorRef }) => {
         <td>--</td>
       </tr>
     ) : (
-      <tr className="StockWatchListItem">
-        <td data-th="Symbol">{symbol}</td>
-        <td data-th="Price $">{formatFloat(price)}</td>
-        <td data-th="Change $">{formatFloat(changePrice)}</td>
-        <td data-th="Change %">{formatFloat(changePercent)}%</td>
-        <td data-th="Volume">{volume}</td>
-      </tr>
-    )
+        <tr className={`StockWatchListItem ${itemClass}`}>
+          <td data-th="Symbol">{symbol}</td>
+          <td data-th="Price $">{formatFloat(price)}</td>
+          <td data-th="Change $">{formatFloat(changePrice)}</td>
+          <td data-th="Change %">{formatFloat(changePercent)}%</td>
+          <td data-th="Volume">{volume}</td>
+        </tr>
+      )
   );
 };
 

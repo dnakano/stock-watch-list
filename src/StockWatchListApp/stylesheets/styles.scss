@@ -89,24 +89,24 @@
   .Buttons {
     width: auto;
     margin-left: 1em;
+  }
 
-    // Add button
-    button {
-      font-weight: bold;
-      color: $color-white;
-      background-color: $color-green-light;
-      width: auto;
-      padding: 10px 16px;
-      margin: 0;
-      border: 0;
-      border-radius: 2px;
-      box-shadow: 2px 2px 5px 0 rgba($box-shadow-color, .2);
+  // Add button
+  .Buttons-add {
+    font-weight: bold;
+    color: $color-white;
+    background-color: $color-green-light;
+    width: auto;
+    padding: 10px 16px;
+    margin: 0;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px 0 rgba($box-shadow-color, 0.2);
 
-      &:hover,
-      &:focus {
-        color: $color-black;
-        background-color: $color-green;
-      }
+    &:hover,
+    &:focus {
+      color: $color-black;
+      background-color: $color-green;
     }
   }
 
@@ -152,7 +152,7 @@
     }
   }
 
-  // Table body
+  // Stock watch list table body
   .StockWatchList-tbody {
     // Make tbody element scrollable
     width: 100%;
@@ -163,51 +163,62 @@
     @include mq-lg-up {
       max-height: 448px;
     }
+  }
 
-    tr {
-      border-bottom: 1px solid $color-green-light;
-    }
+  // Stock watch list item
+  .StockWatchListItem {
+    border-bottom: 1px solid $color-green-light;
 
     // Odd contents
-    tr:nth-child(odd) {
+    &:nth-child(odd) {
       background-color: $color-grey-light;
     }
 
     // Even contents
-    tr:nth-child(even) {
+    &:nth-child(even) {
       background-color: $color-white;
     }
 
-    tr:hover {
+    &:hover {
       color: $color-white;
       background-color: $color-grey;
     }
+  }
 
-    td {
-      // Put each column in a row for small screen
-      display: block;
-      text-align: left;
+  // Stock watch list item's categories
+  .StockWatchListItem td {
+    // Put each column in a row for small screen
+    display: block;
+    text-align: left;
 
-      // For mobile, get value of data-th attribute and display its value before the td value
-      &::before {
-        content: attr(data-th) ": ";
-        display: inline-block;
-        width: 6em;
-        text-align: right;
-        font-weight: bold;
-        padding-right: 0.5em;
-      }
-
-      // For med screen & up
-      @include mq-md-up {
-        display: table-cell;
-        text-align: center;
-
-        // Remove data-th values
-        &::before {
-          content: none;
-        }
-      }
+    // For med screen & up, show categories in the same row
+    @include mq-md-up {
+      display: table-cell;
+      text-align: center;
     }
+  }
+
+  // For mobile, get value of 'data-th' attribute (which contains the category header) and display its value before the td value
+  .StockWatchListItem td::before {
+    content: attr(data-th) ": ";
+    display: inline-block;
+    width: 6em;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 0.5em;
+
+    @include mq-md-up {
+      content: none;
+    }
+  }
+
+  // When stock price goes up
+  .StockWatchListItem.priceUp td {
+    color: green;
+  }
+
+  // When stock price goes down
+  .StockWatchListItem.priceDown td {
+    color: red;
   }
 }
