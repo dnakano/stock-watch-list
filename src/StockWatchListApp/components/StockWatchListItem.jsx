@@ -78,7 +78,6 @@ const StockWatchListItem = ({ symbol, errorRef }) => {
       setVolume((vol) => vol + volume);
     };
 
-    const delay = 5000;
     let timeoutId = null;
 
     // Use setTimeout instead of setInterval to call function recursively
@@ -93,7 +92,7 @@ const StockWatchListItem = ({ symbol, errorRef }) => {
       index += 1;
 
       // Call recursively to update data
-      timeoutId = setTimeout(runRecursively, delay);
+      timeoutId = setTimeout(runRecursively, 5000);
     };
 
     if (timeSeries) {
