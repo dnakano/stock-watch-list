@@ -9,7 +9,7 @@
   min-height: 450px;
   margin: 0 auto;
   border: 1px solid $border-color;
-  box-shadow: 0 0 10px 2px rgba($box-shadow-color, .2);
+  box-shadow: 0 0 10px 2px rgba($box-shadow-color, 0.2);
 
   @include mq-md-up {
     width: 70%;
@@ -17,10 +17,6 @@
   }
 
   @include mq-lg-up {
-    float: right;
     width: 100%;
-    max-width: none;
-    margin: 0;
-    border: 0;
   }
 }
