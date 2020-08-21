@@ -1,7 +1,7 @@
 # Stock Watch List application
 Stock Watch List application is written in [React](https://reactjs.org/) using React Hooks (for demonstration purpose only).
 
-The stock quotes and symbols are retrieved using [Alpha Vantage API](https://www.alphavantage.co/).
+Stock quotes and symbols are retrieved using [Alpha Vantage API](https://www.alphavantage.co/).
 
 The application is located on [my portfolio website](https://daisukenakano.com/index.php#spa).
 
