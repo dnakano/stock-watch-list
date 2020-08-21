@@ -1,6 +1,8 @@
 # Stock Watch List application
 Stock Watch List application is written in [React](https://reactjs.org/) using React Hooks (for demonstration purpose only).
 
+The stock quotes and symbols are retrieved using [Alpha Vantage API](https://www.alphavantage.co/).
+
 The application is located on [my portfolio website](https://daisukenakano.com/index.php#spa).
 
 The source codes are located in the **src** directory:
@@ -15,6 +17,6 @@ The source codes are located in the **src** directory:
 
 ![Stock Watch List app](img/StockWatchListApp.png)
 
-Technologies used: **Babel, ESLint, JavaScript (ES6+), JSX, PostCSS, React, Sass, stylelint, webpack**
+Technologies used: **Alpha Vantage API, Babel, ESLint, JavaScript (ES6+), JSX, PostCSS, React, Sass, stylelint, webpack**
 
 If you have any questions or comments, please contact me. Thanks for looking!
