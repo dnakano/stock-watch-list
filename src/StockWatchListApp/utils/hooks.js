@@ -12,7 +12,7 @@ import { isValidValue, isValidSet } from 'Utils/utils';
       delay: <number> timeout delay in millisecond
     }
 */
-export const useFetch = ({ url='', type='off', delay=1000 }) => {
+export const useFetch = ({ url = '', type = 'off', delay = 1000 }) => {
 
   // state variables to track fetched data and error
   const [data, setData] = useState(null);
@@ -26,53 +26,55 @@ export const useFetch = ({ url='', type='off', delay=1000 }) => {
     // Flag to let data fetching know about the state (mounted/unmounted) of the component.
     let didCancel = false;
 
-    const fetchData = () => {
-      if (!url) {
-        return;
+    // Fetch data asynchronously
+    const fetchData = async () => {
+
+      try {
+        if (!url) {
+          return;
+        }
+
+        const response = await fetch(url);
+
+        // Response status is not ok
+        if (!response.ok) {
+          throw `Failed to retrieve data! Code: ${response.status} Message: ${response.statusText}`;
+        }
+
+        // Convert json to plain object and return promise
+        const obj = await response.json();
+
+        // Response object contains error
+        if (obj['Error Message']) {
+          throw obj['Error Message'];
+        }
+
+        let timeoutId = null;
+
+        // Response object has 'note'
+        if (obj && obj.Note) {
+          console.warn('Alpha Vantage returned note...');
+          console.warn(`obj.Note: ${obj.Note}`);
+
+          // For interval and off, pause 60 second and try again...
+          if (type !== 'timeout') {
+            timeoutId = setTimeout(fetchData, 60000);
+          }
+        }
+
+        // Valid data
+        if (!didCancel && obj && !obj.Note && !obj['Error Message']) {
+          clearTimeout(timeoutId);
+          setData(obj);
+        }
+
+      } catch (error) {
+        console.error(error);
+
+        if (!didCancel) {
+          setError(error);
+        }
       }
-
-      fetch(url)
-        .then((response) => {
-          // Response status is not ok
-          if (!response.ok) {
-            throw `Failed to retrieve data! Code: ${response.status} Message: ${response.statusText}`;
-          }
-
-          // Convert json to plain object and return promise
-          return response.json();
-        })
-        .then((obj) => {
-          // Response object contains error
-          if (obj['Error Message']) {
-            throw obj['Error Message'];
-          }
-
-          let timeoutId = null;
-
-          // Response object has 'note'
-          if (obj && obj.Note) {
-            console.warn('Alpha Vantage returned note...');
-            console.warn(`obj.Note: ${obj.Note}`);
-
-            // For interval and off, pause 60 second and try again...
-            if (type !== 'timeout') {
-              timeoutId = setTimeout(fetchData, 60000);
-            }
-          }
-
-          // Valid data
-          if (!didCancel && obj && !obj.Note && !obj['Error Message']) {
-            clearTimeout(timeoutId);
-            setData(obj);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-
-          if (!didCancel) {
-            setError(error);
-          }
-        });
     };
 
     let recursiveId = null;
